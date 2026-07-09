@@ -13,7 +13,18 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Namit Singh — Business Analyst</title>
+<title>Namit Singh Data & Business Analyst</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Namit Singh Data & Business Analyst. Turning tangled data into clear decisions with SQL, Python, Tableau and Power BI.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Namit Singh Data & Business Analyst">
+<meta property="og:description" content="Turning tangled data into clear decisions — real projects in SQL, Python, Tableau and Power BI.">
+<meta property="og:image" content="https://namitt.github.io/NamitSingh.github.io/social-share.png">
+<meta property="og:url" content="https://namitt.github.io/NamitSingh.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Namit Singh Data & Business Analyst">
+<meta name="twitter:description" content="Turning tangled data into clear decisions — real projects in SQL, Python, Tableau and Power BI.">
+<meta name="twitter:image" content="https://namitt.github.io/NamitSingh.github.io/social-share.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -69,9 +80,6 @@
     font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--muted); font-weight: 600;
     display:flex; align-items:center; gap: 12px;
-  }
-  .eyebrow::before{
-    content:""; width: 28px; height: 1px; background: var(--ink); opacity:.5;
   }
 
   /* ---------- Nav ---------- */
@@ -184,15 +192,35 @@
   .skill-grid{ display:grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border:1px solid var(--line); }
   @media(min-width: 720px){ .skill-grid{ grid-template-columns: repeat(3,1fr); } }
   .skill-card{ background: var(--bg-2); padding: 34px 30px; display:flex; flex-direction:column; gap:18px; transition: background .3s ease; }
+  .skill-card.wide{ grid-column: 1 / -1; }
   .skill-card:hover{ background: var(--bg); }
   .skill-card .idx{ font-size:13px; color: var(--accent); font-weight:600; letter-spacing:.1em; }
   .skill-card h3{ font-family:"Instrument Serif",serif; font-size: 27px; font-weight:400; letter-spacing:-0.01em; }
   .chips{ display:flex; flex-wrap:wrap; gap:9px; }
   .chip{ font-size:13.5px; color: var(--ink-soft); border:1px solid var(--line); border-radius:40px; padding:6px 14px; background: var(--bg); transition: border-color .25s, color .25s; }
   .skill-card:hover .chip{ border-color: color-mix(in oklch, var(--accent) 40%, var(--line)); }
+  .chip.hidden{ display:none; }
+  .chip-toggle{ font: inherit; font-size:13.5px; cursor:pointer; color: var(--accent); font-weight:600; border-color: transparent; background: transparent; padding:6px 4px; }
+  .chip-toggle:hover{ text-decoration: underline; }
 
   /* ---------- Projects ---------- */
   .proj-list{ display:flex; flex-direction:column; }
+  .more-toggle{
+    display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    margin: 6px 0 34px; padding: 16px; border:1px solid var(--line); border-radius: 14px;
+    background: transparent; color: var(--ink-soft); font: inherit; font-size:14.5px; font-weight:600;
+    cursor:pointer; transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .more-toggle:hover{ background: var(--bg-2); color: var(--ink); border-color: var(--ink-soft); }
+  .more-toggle .mt-count{ color: var(--accent); }
+  .more-toggle .mt-arw{ transition: transform .3s ease; font-size:13px; }
+  .more-toggle[aria-expanded="true"] .mt-arw{ transform: rotate(180deg); }
+  .more-toggle[aria-expanded="true"] .mt-label .mt-count::after{ content:""; }
+  .more-projects{
+    max-height:0; overflow:hidden; opacity:0;
+    transition: max-height .6s ease, opacity .5s ease;
+  }
+  .more-projects.open{ opacity:1; }
   .proj{
     display:grid; grid-template-columns: 1fr; gap: 30px; align-items:center;
     padding-block: clamp(38px, 5vw, 64px); border-top: 1px solid var(--line);
@@ -495,14 +523,14 @@
   <header class="hero" id="top" data-screen-label="Hero">
     <div class="wrap">
       <div class="hero-grid reveal in">
-        <div class="eyebrow">Business Analyst — Data storyteller</div>
+        <div class="eyebrow">Data &amp; Business Analyst</div>
         <h1 class="serif">Namit Singh</h1>
         <p class="hero-tagline">Turning tangled data into <em>clear</em> decisions.</p>
         <p class="hero-sub" style="text-align: justify">I help teams see what the numbers are really saying, translating dashboards, models and messy spreadsheets into decisions people can act on.</p>
         <div class="hero-meta">
-          <span class="tag"><b>2+ yrs</b> analytics</span>
+          <span class="tag"><b>2+ yrs</b> Analytics</span>
           <span class="tag"><b>SQL · Python · BI</b></span>
-          <span class="tag"><b>Based remotely</b>, working globally</span>
+          <span class="tag"><b>Manchester<span style="color: oklch(0.58 0.02 265); font-weight: 500;">, United Kingdom</span></b></span>
         </div>
       </div>
     </div>
@@ -553,7 +581,7 @@
         <div class="skill-card reveal">
           <span class="idx">01</span>
           <h3>Data &amp; querying</h3>
-          <div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">pandas</span><span class="chip">dbt</span><span class="chip">BigQuery</span><span class="chip">Snowflake</span></div>
+          <div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">R</span><span class="chip">Matplotlib</span><span class="chip">scikit-learn</span></div>
         </div>
         <div class="skill-card reveal">
           <span class="idx">02</span>
@@ -573,12 +601,29 @@
         <div class="skill-card reveal">
           <span class="idx">05</span>
           <h3>Modeling</h3>
-          <div class="chips"><span class="chip">Financial models</span><span class="chip">Segmentation</span><span class="chip">Regression</span><span class="chip">Scenario planning</span></div>
+          <div class="chips"><span class="chip">Financial models</span><span class="chip">Segmentation</span><span class="chip">Scenario planning</span></div>
         </div>
         <div class="skill-card reveal">
           <span class="idx">06</span>
           <h3>Communication</h3>
           <div class="chips"><span class="chip">Data storytelling</span><span class="chip">Exec decks</span><span class="chip">Documentation</span><span class="chip">Workshops</span></div>
+        </div>
+        <div class="skill-card wide reveal">
+          <span class="idx">07</span>
+          <h3>Algorithms &amp; ML</h3>
+          <div class="chips">
+            <span class="chip">Gradient Boosting (XGBoost)</span>
+            <span class="chip">Random Forest</span>
+            <span class="chip">Time Series Forecasting</span>
+            <span class="chip">Principal Component Analysis</span>
+            <span class="chip">K-Means Clustering</span>
+            <span class="chip chip-extra hidden">Linear Regression</span>
+            <span class="chip chip-extra hidden">Logistic Regression</span>
+            <span class="chip chip-extra hidden">Decision Tree</span>
+            <span class="chip chip-extra hidden">Naive Bayes</span>
+            <span class="chip chip-extra hidden">Apriori Algorithm</span>
+            <button type="button" class="chip chip-toggle">+5 more</button>
+          </div>
         </div>
       </div>
     </div>
@@ -705,6 +750,15 @@
             <a class="proj-link" href="https://github.com/Namitt/Customer_Shopping_Trend_Analysis" target="_blank" rel="noopener">View repo <span class="arw">↗</span></a>
           </div>
         </article>
+
+      </div>
+
+      <button class="more-toggle" id="moreToggle" aria-expanded="false">
+        <span class="mt-label">More projects</span>
+        <span class="mt-arw">↓</span>
+      </button>
+
+      <div class="proj-list more-projects" id="moreProjects">
 
         <article class="proj flip reveal">
           <div class="proj-media carousel" data-autoplay="6200" data-repo="https://github.com/Namitt/Sentiment-Analysis-with-Sarcasm-Detection">
@@ -899,7 +953,7 @@
           <div class="proj-info">
             <div class="kind">SQL · GitHub</div>
             <h3>Retail sales analysis</h3>
-            <p>A beginner-friendly SQL project: database setup, null-handling data cleaning, and business queries covering best-selling months, top 5 customers, and morning/afternoon/evening sales shifts.</p>
+            <p>A SQL project: database setup, null-handling data cleaning, and business queries covering best-selling months, top 5 customers, and morning/afternoon/evening sales shifts.</p>
             <div class="proj-tools"><b>Stack:</b> SQL · Window functions · Data cleaning</div>
             <a class="proj-link" href="https://github.com/Namitt/Retail-Sales-Analysis" target="_blank" rel="noopener">View repo <span class="arw">↗</span></a>
           </div>
@@ -937,6 +991,7 @@
         </article>
 
       </div>
+      </div>
 
       <div class="tableau-cta reveal">
         <div class="t">
@@ -958,11 +1013,11 @@
       </div>
       <div class="connect-grid">
         <div class="connect-buttons reveal">
-          <a class="connect-btn" style="--glow:#3c56be" href="mailto:namitt.singh@gmail.com">
+          <a class="connect-btn" style="--glow:#3c56be" href="/cdn-cgi/l/email-protection#deb0bfb3b7aaaaf0adb7b0b9b69eb9b3bfb7b2f0bdb1b3">
             <span class="go">↗</span>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
             <span class="lbl">Email</span>
-            <span class="sub">namitt.singh@gmail.com</span>
+            <span class="sub"><span class="__cf_email__" data-cfemail="b0ded1ddd9c4c49ec3d9ded7d8f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></span>
           </a>
           <a class="connect-btn" style="--glow:#0A66C2" href="https://www.linkedin.com/in/namitt/" target="_blank" rel="noopener">
             <span class="go">↗</span>
@@ -984,8 +1039,12 @@
           </a>
         </div>
 
-        <form class="connect-form reveal" id="contact-form">
+        <form class="connect-form reveal" id="contact-form" action="https://formsubmit.co/namitt.singh@gmail.com" method="POST">
           <h3>Send a message</h3>
+          <input type="hidden" name="_subject" value="New message from portfolio site">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://namitt.github.io/?sent=1#connect">
           <div class="field">
             <label for="cf-name">Name</label>
             <input id="cf-name" name="name" type="text" required autocomplete="name">
@@ -1009,18 +1068,54 @@
 
   <footer>
     <div class="wrap foot">
-      <span>© 2026 Namit Singh — Business Analyst</span>
+      <span>© 2026 Namit Singh Data & Business Analyst</span>
       <span class="foot-links">
         <a href="#top" class="backtotop">Back to top ↑</a>
       </span>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
   /* ---------------- Nav scroll state ---------------- */
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+
+  /* ---------------- Skill chip "+more" toggles ---------------- */
+  document.querySelectorAll('.chip-toggle').forEach(btn => {
+    const card = btn.closest('.chips');
+    const extras = card.querySelectorAll('.chip-extra');
+    const baseLabel = btn.textContent;
+    btn.addEventListener('click', () => {
+      const willShow = extras[0] && extras[0].classList.contains('hidden');
+      extras.forEach(c => c.classList.toggle('hidden', !willShow));
+      btn.textContent = willShow ? 'Show less' : baseLabel;
+    });
+  });
+
+  /* ---------------- More projects toggle ---------------- */
+  (function(){
+    const btn = document.getElementById('moreToggle');
+    const panel = document.getElementById('moreProjects');
+    if(!btn || !panel) return;
+    btn.addEventListener('click', () => {
+      const open = panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.querySelector('.mt-label').firstChild.textContent = open ? 'Fewer projects ' : 'More projects ';
+      if(open){
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.addEventListener('transitionend', function onEnd(e){
+          if(e.propertyName === 'max-height'){ panel.style.maxHeight = 'none'; panel.removeEventListener('transitionend', onEnd); }
+        });
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        requestAnimationFrame(() => requestAnimationFrame(() => { panel.style.maxHeight = '0px'; }));
+      }
+    });
+    window.addEventListener('resize', () => {
+      if(panel.classList.contains('open')) panel.style.maxHeight = panel.scrollHeight + 'px';
+    });
+  })();
   onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
 
   /* ---------------- Theme (light / dark / system) ---------------- */
@@ -1108,33 +1203,19 @@
     const status = document.getElementById('cf-status');
     const btn = form.querySelector('.form-submit');
     const label = btn.querySelector('.btn-label');
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+    // Plain form POST (no fetch/AJAX): avoids CORS/preflight entirely and matches
+    // FormSubmit's activation flow (first-ever submission emails an activation link).
+    form.addEventListener('submit', function(){
       btn.disabled = true; label.textContent = 'Sending…';
       status.textContent = ''; status.className = 'form-status';
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value,
-        _subject: 'New message from portfolio site',
-        _template: 'table'
-      };
-      fetch('https://formsubmit.co/ajax/namitt.singh@gmail.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(r => { if(!r.ok) throw new Error('bad response'); return r.json(); })
-        .then(()=>{
-          status.textContent = "Thanks — your message is on its way. I'll reply soon.";
-          status.className = 'form-status ok';
-          form.reset();
-        })
-        .catch(()=>{
-          status.textContent = 'Something went wrong — email me directly at namitt.singh@gmail.com.';
-          status.className = 'form-status err';
-        })
-        .finally(()=>{ btn.disabled = false; label.textContent = 'Send message'; });
+      // No preventDefault — browser navigates to FormSubmit, which redirects back to _next.
     });
+    // On return from FormSubmit ("?sent=1"), show success and clean the URL.
+    if (location.search.includes('sent=1')) {
+      status.textContent = "Thanks — your message is on its way. I'll reply soon.";
+      status.className = 'form-status ok';
+      history.replaceState(null, '', location.pathname + location.hash);
+    }
   })();
 
   /* ---------------- Project carousels ---------------- */
