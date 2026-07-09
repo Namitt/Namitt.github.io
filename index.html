@@ -19,12 +19,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Namit Singh Data & Business Analyst">
 <meta property="og:description" content="Turning tangled data into clear decisions — real projects in SQL, Python, Tableau and Power BI.">
-<meta property="og:image" content="https://namitt.github.io/NamitSingh.github.io/social-share.png">
-<meta property="og:url" content="https://namitt.github.io/NamitSingh.github.io/">
+<meta property="og:image" content="https://namitt.github.io/social-share.png">
+<meta property="og:url" content="https://namitt.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Namit Singh Data & Business Analyst">
 <meta name="twitter:description" content="Turning tangled data into clear decisions — real projects in SQL, Python, Tableau and Power BI.">
-<meta name="twitter:image" content="https://namitt.github.io/NamitSingh.github.io/social-share.png">
+<meta name="twitter:image" content="https://namitt.github.io/social-share.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -202,6 +202,30 @@
   .chip.hidden{ display:none; }
   .chip-toggle{ font: inherit; font-size:13.5px; cursor:pointer; color: var(--accent); font-weight:600; border-color: transparent; background: transparent; padding:6px 4px; }
   .chip-toggle:hover{ text-decoration: underline; }
+
+  /* ---------- Education & Certification ---------- */
+  .edu-grid{ display:grid; grid-template-columns: 1fr; gap: clamp(40px,6vw,80px); }
+  @media(min-width: 860px){ .edu-grid{ grid-template-columns: 1.2fr 1fr; } }
+  .edu-col .col-lbl{ font-size:13px; letter-spacing:.14em; text-transform:uppercase; color: var(--muted); font-weight:600; margin-bottom: 22px; }
+  .edu-item{ display:flex; gap:18px; padding-block: 24px; border-top:1px solid var(--line); }
+  .edu-col .edu-item:last-child{ border-bottom:1px solid var(--line); }
+  .edu-item .logo{ width:44px; height:44px; border-radius:12px; background: #fff; display:flex; align-items:center; justify-content:center; flex:none; margin-top:2px; overflow:hidden; border:1px solid var(--line); }
+  .edu-item .logo img{ width:100%; height:100%; object-fit:cover; }
+  .edu-item .body{ flex:1; }
+  .edu-item .degree{ font-family:"Instrument Serif",serif; font-size: 23px; letter-spacing:-0.01em; line-height:1.25; }
+  .edu-item .school{ color: var(--accent); font-weight:500; margin-top:4px; }
+  .edu-item .when{ font-size:13.5px; color: var(--muted); margin-top:6px; }
+  .cert-item{ display:flex; align-items:center; gap:18px; padding: 20px 22px; border:1px solid var(--line); border-radius:14px; background: var(--bg); color: var(--ink); cursor:pointer;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease; }
+  .cert-item + .cert-item{ margin-top:14px; }
+  .cert-item:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px -24px rgba(20,20,30,.3); border-color: color-mix(in oklch, var(--accent) 40%, var(--line)); }
+  .cert-item .badge{ width:44px; height:44px; border-radius:12px; background: #fff; display:flex; align-items:center; justify-content:center; flex:none; overflow:hidden; border:1px solid var(--line); }
+  .cert-item .badge img{ width:100%; height:100%; object-fit:cover; }
+  .cert-item .txt{ flex:1; }
+  .cert-item .name{ font-weight:600; font-size:15.5px; }
+  .cert-item .issuer{ font-size:13.5px; color: var(--muted); margin-top:3px; }
+  .cert-item .go{ font-size:14px; color: var(--muted); flex:none; transition: transform .25s ease, color .25s ease; }
+  .cert-item:hover .go{ color: var(--accent); transform: translate(3px,-3px); }
 
   /* ---------- Projects ---------- */
   .proj-list{ display:flex; flex-direction:column; }
@@ -487,6 +511,19 @@
   .form-status.ok{ color: oklch(0.5 0.14 150); }
   .form-status.err{ color: oklch(0.55 0.18 25); }
 
+  /* ---------------- Certificate modal ---------------- */
+  .cert-modal{ position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding: 40px 20px;
+    background: color-mix(in oklch, var(--ink) 55%, transparent); backdrop-filter: blur(6px);
+    opacity:0; pointer-events:none; transition: opacity .25s ease; }
+  .cert-modal.open{ opacity:1; pointer-events:auto; }
+  .cert-modal .panel{ position:relative; width:min(880px, 100%); height:min(88vh, 1100px); background: var(--bg); border-radius: 16px; overflow:hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.5);
+    transform: translateY(14px) scale(.98); transition: transform .3s cubic-bezier(.2,.7,.2,1); }
+  .cert-modal.open .panel{ transform:none; }
+  .cert-modal iframe{ width:100%; height:100%; border:none; display:block; }
+  .cert-modal .close{ position:absolute; top:14px; right:14px; z-index:2; width:36px; height:36px; border-radius:50%; border:1px solid var(--line);
+    background: color-mix(in oklch, var(--bg) 85%, transparent); color: var(--ink); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; line-height:1; }
+  .cert-modal .close:hover{ border-color: var(--accent); color: var(--accent); }
+
   footer{ padding-block: 30px; position:relative; z-index:2; background: color-mix(in oklch, var(--bg) var(--veil), transparent); backdrop-filter: blur(0.4px); -webkit-backdrop-filter: blur(0.4px); }
   .foot{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; align-items:center; color: var(--muted); font-size:13.5px; }
   .foot-links{ display:flex; align-items:center; gap:16px; }
@@ -513,6 +550,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
       <a href="#work">Work</a>
       <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme"></button>
       <a class="nav-cta" href="#connect">Get in touch</a>
@@ -624,6 +662,48 @@
             <span class="chip chip-extra hidden">Apriori Algorithm</span>
             <button type="button" class="chip chip-toggle">+5 more</button>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION & CERTIFICATION ============ -->
+  <section class="section-pad" id="education" data-screen-label="Education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Education &amp; certification</div>
+        <h2 class="serif">Grounded in <span class="ital">rigor.</span></h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-col reveal">
+          <div class="col-lbl">Education</div>
+          <div class="edu-item">
+            <span class="logo"><img src="images/warwick-icon.jpg" alt="University of Warwick"></span>
+            <div class="body">
+              <div class="degree">MSc Business Analytics</div>
+              <div class="school">University of Warwick</div>
+              <div class="when">2023 – 2024</div>
+            </div>
+          </div>
+          <div class="edu-item">
+            <span class="logo"><img src="images/mumbai-icon.jpeg" alt="University of Mumbai"></span>
+            <div class="body">
+              <div class="degree">B.E. Electronics Engineering</div>
+              <div class="school">University of Mumbai</div>
+              <div class="when">2019 – 2023</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="col-lbl">Certifications</div>
+          <a class="cert-item" href="certificates/prince2-foundation-namit-singh.pdf" target="_blank" rel="noopener" id="cert-link">
+            <span class="badge"><img src="images/peoplecert-icon.png" alt="PeopleCert"></span>
+            <div class="txt">
+              <div class="name">PRINCE2 7 Foundation</div>
+              <div class="issuer">PeopleCert · Issued Aug 2025</div>
+            </div>
+            <span class="go">↗</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1074,6 +1154,13 @@
     </div>
   </footer>
 
+  <div class="cert-modal" id="cert-modal">
+    <div class="panel">
+      <button type="button" class="close" id="cert-modal-close" aria-label="Close">&times;</button>
+      <iframe id="cert-modal-frame" src="" title="PRINCE2 7 Foundation certificate"></iframe>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
   /* ---------------- Nav scroll state ---------------- */
@@ -1194,6 +1281,31 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('.metric .num').forEach(el=>countIO.observe(el));
+
+  /* ---------------- Certificate link (opens in-page modal, avoids popup blocking) ---------------- */
+  (function(){
+    const link = document.getElementById('cert-link');
+    const modal = document.getElementById('cert-modal');
+    const frame = document.getElementById('cert-modal-frame');
+    const closeBtn = document.getElementById('cert-modal-close');
+    if(!link || !modal || !frame) return;
+    function open(){
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      fetch(link.getAttribute('href')).then(r => r.blob()).then(blob => {
+        frame.src = URL.createObjectURL(blob);
+      });
+    }
+    function close(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(()=>{ frame.src = ''; }, 250);
+    }
+    link.addEventListener('click', function(e){ e.preventDefault(); open(); });
+    closeBtn.addEventListener('click', close);
+    modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) close(); });
+  })();
 
   /* ---------------- Contact form (FormSubmit AJAX, no page leave) ---------------- */
   (function(){
@@ -1425,7 +1537,7 @@
       "accent": "#3c56be",
       "density": 1900,
       "speed": 2.5,
-      "size": 1.3,
+      "size": 2,
       "lines": true,
       "fieldVisibility": 100
     }/*EDITMODE-END*/;
