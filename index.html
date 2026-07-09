@@ -1013,11 +1013,11 @@
       </div>
       <div class="connect-grid">
         <div class="connect-buttons reveal">
-          <a class="connect-btn" style="--glow:#3c56be" href="/cdn-cgi/l/email-protection#046a65696d70702a776d6a636c446369656d682a676b69">
+          <a class="connect-btn" id="email-btn" style="--glow:#3c56be" href="#" data-user="namitt.singh" data-domain="gmail.com">
             <span class="go">↗</span>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
             <span class="lbl">Email</span>
-            <span class="sub"><span class="__cf_email__" data-cfemail="a9c7c8c4c0dddd87dac0c7cec1e9cec4c8c0c587cac6c4">[email&#160;protected]</span></span>
+            <span class="sub" id="email-btn-sub"></span>
           </a>
           <a class="connect-btn" style="--glow:#0A66C2" href="https://www.linkedin.com/in/namitt/" target="_blank" rel="noopener">
             <span class="go">↗</span>
@@ -1074,7 +1074,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
   /* ---------------- Nav scroll state ---------------- */
   const nav = document.getElementById('nav');
@@ -1196,6 +1196,14 @@
   document.querySelectorAll('.metric .num').forEach(el=>countIO.observe(el));
 
   /* ---------------- Contact form (FormSubmit AJAX, no page leave) ---------------- */
+  (function(){
+    const btn = document.getElementById('email-btn');
+    if(btn){
+      const addr = btn.dataset.user + '@' + btn.dataset.domain;
+      btn.href = 'mailto:' + addr;
+      document.getElementById('email-btn-sub').textContent = addr;
+    }
+  })();
   (function(){
     const form = document.getElementById('contact-form');
     if(!form) return;
