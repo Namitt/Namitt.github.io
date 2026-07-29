@@ -1435,11 +1435,10 @@
     const grain = document.getElementById('introGrain');
     if(!overlay || !phraseEl || !grain) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduce || sessionStorage.getItem('introPlayed') === '1'){
+    if(reduce){
       overlay.remove();
       return;
     }
-    sessionStorage.setItem('introPlayed', '1');
     const phrases = ['Turning data into decisions.', 'Building trust in numbers.', 'Namit Singh.'];
     let i = 0;
     function showPhrase(){
@@ -2030,7 +2029,7 @@ A data or business analyst position where he can own end-to-end work and keep gr
   <script type="text/babel">
     const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
       "accent": "#3c56be",
-      "density": 1800,
+      "density": 1700,
       "speed": 2.5,
       "size": 1.4,
       "lines": true,
