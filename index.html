@@ -159,7 +159,7 @@
 
   /* ---------- Hero ---------- */
   .hero{ position: relative; min-height: 100svh; display:flex; align-items:center; overflow: hidden; padding-top: 96px; padding-bottom: 120px; }
-  #scene{ position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; }
+  #scene{ position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none; opacity:.4; }
   .hero .wrap{ position: relative; z-index: 2; width:100%; }
   .hero-stage{ position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top: clamp(10px, 3vw, 30px); }
   .hero-bigname{
@@ -242,10 +242,15 @@
 
   /* ---------- Skills ---------- */
   .skills{ background: color-mix(in oklch, var(--bg) var(--veil), transparent); }
-  .skill-grid{ display:grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border:1px solid var(--line); }
-  @media(min-width: 720px){ .skill-grid{ grid-template-columns: repeat(3,1fr); } }
-  .skill-card{ background: var(--bg-2); padding: 34px 30px; display:flex; flex-direction:column; gap:18px; transition: background .3s ease; }
-  .skill-card.wide{ grid-column: 1 / -1; }
+  .skill-filter{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px; }
+  .skill-filter button{ font: inherit; font-size:14px; font-weight:600; letter-spacing:.02em; color: var(--ink-soft); background: var(--bg-2); border:1px solid var(--line); border-radius:40px; padding:9px 20px; cursor:pointer; transition: color .25s ease, border-color .25s ease, background .25s ease; }
+  .skill-filter button:hover{ color: var(--ink); border-color: color-mix(in oklch, var(--accent) 40%, var(--line)); }
+  .skill-filter button.active{ color: var(--bg); background: var(--accent); border-color: var(--accent); }
+  .skill-grid{ display:flex; flex-wrap:wrap; justify-content:center; gap:1px; background: var(--line); border:1px solid var(--line); }
+  .skill-card{ background: var(--bg-2); padding: 34px 30px; display:flex; flex-direction:column; gap:18px; transition: background .3s ease, opacity .35s ease, transform .35s ease; flex: 1 1 100%; }
+  @media(min-width: 720px){ .skill-card{ flex-basis: calc(50% - 1px); } }
+  @media(min-width: 1080px){ .skill-card{ flex-basis: calc(33.333% - 1px); } }
+  .skill-card:not(.show){ opacity:0; transform: translateY(10px); }
   .skill-card:hover{ background: var(--bg); }
   .skill-card .idx{ font-size:13px; color: var(--accent); font-weight:600; letter-spacing:.1em; }
   .skill-card h3{ font-family:"Instrument Serif",serif; font-size: 27px; font-weight:400; letter-spacing:-0.01em; }
@@ -714,53 +719,46 @@
         <div class="eyebrow">Skills &amp; tools</div>
         <h2 class="serif">The <span class="ital">stack</span> behind the insights.</h2>
       </div>
-      <div class="skill-grid">
-        <div class="skill-card reveal">
+      <div class="skill-filter reveal" role="tablist">
+        <button type="button" class="active" data-filter="all">All</button>
+        <button type="button" data-filter="ba">Business Analyst</button>
+        <button type="button" data-filter="da">Data Analyst</button>
+      </div>
+      <div class="skill-grid" id="skillGrid">
+        <div class="skill-card reveal show" data-audience="da">
           <span class="idx">01</span>
-          <h3>Data &amp; querying</h3>
-          <div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">R</span><span class="chip">Matplotlib</span><span class="chip">scikit-learn</span></div>
+          <h3>Data engineering</h3>
+          <div class="chips"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">ETL</span><span class="chip">Azure</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal show" data-audience="both">
           <span class="idx">02</span>
-          <h3>Visualization &amp; BI</h3>
-          <div class="chips"><span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">Looker</span><span class="chip">Excel</span></div>
+          <h3>BI &amp; visualisation</h3>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Excel</span><span class="chip">Dashboard design</span><span class="chip">KPI reporting</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal show" data-audience="ba">
           <span class="idx">03</span>
-          <h3>Analysis &amp; method</h3>
-          <div class="chips"><span class="chip">A/B testing</span><span class="chip">Forecasting</span><span class="chip">Cohort analysis</span><span class="chip">KPI design</span><span class="chip">Statistics</span></div>
+          <h3>Business analysis</h3>
+          <div class="chips"><span class="chip">Requirements elicitation</span><span class="chip">Stakeholder management</span><span class="chip">Process mapping</span><span class="chip">User stories</span><span class="chip">MoSCoW prioritisation</span><span class="chip">Workshop facilitation</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal show" data-audience="both">
           <span class="idx">04</span>
-          <h3>Business &amp; product</h3>
-          <div class="chips"><span class="chip">Requirements</span><span class="chip">Stakeholder mgmt</span><span class="chip">Roadmapping</span><span class="chip">Process mapping</span></div>
+          <h3>Analytics</h3>
+          <div class="chips"><span class="chip">Statistics</span><span class="chip">Forecasting</span><span class="chip">A/B testing</span><span class="chip">Cohort analysis</span><span class="chip">Root cause analysis</span><span class="chip">Scenario analysis</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal show" data-audience="da">
           <span class="idx">05</span>
-          <h3>Modeling</h3>
-          <div class="chips"><span class="chip">Financial models</span><span class="chip">Segmentation</span><span class="chip">Scenario planning</span></div>
+          <h3>Machine learning</h3>
+          <div class="chips"><span class="chip">scikit-learn</span><span class="chip">Logistic Regression</span><span class="chip">Random Forest</span><span class="chip">XGBoost</span><span class="chip">K-Means Clustering</span><span class="chip">PCA</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal show" data-audience="ba">
           <span class="idx">06</span>
-          <h3>Communication</h3>
-          <div class="chips"><span class="chip">Data storytelling</span><span class="chip">Exec decks</span><span class="chip">Documentation</span><span class="chip">Workshops</span></div>
+          <h3>Delivery &amp; change</h3>
+          <div class="chips"><span class="chip">PRINCE2®</span><span class="chip">Agile</span><span class="chip">Scrum</span><span class="chip">JIRA</span><span class="chip">Kanban</span><span class="chip">Roadmapping</span></div>
         </div>
-        <div class="skill-card wide reveal">
+        <div class="skill-card reveal show" data-audience="both">
           <span class="idx">07</span>
-          <h3>Algorithms &amp; ML</h3>
-          <div class="chips">
-            <span class="chip">Gradient Boosting (XGBoost)</span>
-            <span class="chip">Random Forest</span>
-            <span class="chip">Time Series Forecasting</span>
-            <span class="chip">Principal Component Analysis</span>
-            <span class="chip">K-Means Clustering</span>
-            <span class="chip chip-extra hidden">Linear Regression</span>
-            <span class="chip chip-extra hidden">Logistic Regression</span>
-            <span class="chip chip-extra hidden">Decision Tree</span>
-            <span class="chip chip-extra hidden">Naive Bayes</span>
-            <span class="chip chip-extra hidden">Apriori Algorithm</span>
-            <button type="button" class="chip chip-toggle">+5 more</button>
-          </div>
+          <h3>Communication</h3>
+          <div class="chips"><span class="chip">Data storytelling</span><span class="chip">Executive reporting</span><span class="chip">Documentation</span><span class="chip">Presentations</span><span class="chip">Training</span><span class="chip">Facilitation</span></div>
         </div>
       </div>
     </div>
@@ -1488,6 +1486,27 @@
       btn.textContent = willShow ? 'Show less' : baseLabel;
     });
   });
+
+  /* ---------------- Skills filter ---------------- */
+  (function(){
+    const btns = document.querySelectorAll('.skill-filter button');
+    const cards = document.querySelectorAll('#skillGrid .skill-card');
+    btns.forEach(btn => btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.toggle('active', b === btn));
+      const tag = btn.dataset.filter;
+      cards.forEach(card => {
+        const aud = card.dataset.audience;
+        const match = tag === 'all' || aud === 'both' || aud === tag;
+        if(match){
+          card.style.display = '';
+          requestAnimationFrame(() => card.classList.add('show'));
+        } else {
+          card.classList.remove('show');
+          setTimeout(() => { if(!card.classList.contains('show')) card.style.display = 'none'; }, 350);
+        }
+      });
+    }));
+  })();
 
   /* ---------------- More projects toggle ---------------- */
   (function(){
