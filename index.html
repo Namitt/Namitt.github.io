@@ -338,7 +338,7 @@
     padding-block: clamp(38px, 5vw, 64px); border-top: 1px solid var(--line);
   }
   .proj:last-child{ border-bottom: 1px solid var(--line); }
-  @media(min-width: 860px){ .proj{ grid-template-columns: 0.9fr 1.1fr; gap: 56px; } .proj.flip .proj-media{ order:2; } }
+  @media(min-width: 860px){ .proj{ grid-template-columns: 1.1fr 0.9fr; gap: 56px; } .proj.flip{ grid-template-columns: 0.9fr 1.1fr; } .proj.flip .proj-media{ order:2; } }
   .proj-media{ position:relative; aspect-ratio: 16/11; border:1px solid var(--line); border-radius: 14px; overflow:hidden;
     background: var(--bg-2); cursor:pointer;
     display:flex; align-items:center; justify-content:center;
@@ -356,7 +356,8 @@
   /* ---------- Carousel ---------- */
   .car-track{ display:flex; height:100%; width:100%; transition: transform .65s cubic-bezier(.65,0,.35,1); }
   .car-slide{ flex:0 0 100%; height:100%; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; background:var(--bg); }
-  .car-slide img{ width:100%; height:100%; object-fit:cover; object-position: top; display:block; }
+  .car-slide::before{ content:""; position:absolute; inset:0; background-image: var(--bg-img, none); background-size:cover; background-position:center; filter: blur(26px) saturate(1.15); transform: scale(1.25); z-index:0; }
+  .car-slide img{ position:relative; z-index:1; width:100%; height:100%; object-fit:contain; display:block; }
   .car-arrow{ position:absolute; top:50%; transform:translateY(-50%); z-index:4; width:34px; height:34px; border-radius:50%;
     border:1px solid color-mix(in oklch, var(--ink) 20%, transparent); background: color-mix(in oklch, var(--bg) 78%, transparent); backdrop-filter: blur(6px);
     color: var(--ink); font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer;
@@ -670,8 +671,7 @@
         <p class="hero-sub" style="text-align: center">I help teams see what the numbers are really saying, translating dashboards, models and messy spreadsheets into decisions people can act on.</p>
         <div class="hero-meta">
           <span class="tag"><b>3 yrs</b> Analytics</span>
-          <span class="tag"><b>SQL · Python · BI</b></span>
-          <span class="tag"><b>Manchester<span style="color: oklch(0.58 0.02 265); font-weight: 500;">, United Kingdom</span></b></span>
+          <span class="tag"><b>SQL · Python · BI · Automation · Claude</b></span>
         </div>
         <a class="cv-download" href="resume/Namit-Singh-CV.pdf" download>Download CV <span class="cv-arw">↓</span></a>
       </div>
@@ -704,7 +704,6 @@
           <div class="about-side">
             <div class="row"><span class="k">Focus</span><span class="v">Product · Growth · Ops analytics</span></div>
             <div class="row"><span class="k">Approach</span><span class="v">Question-first, decision-driven</span></div>
-            <div class="row"><span class="k">Location</span><span class="v">Manchester, United Kingdom</span></div>
           </div>
         </div>
         <div class="reveal"></div>
@@ -995,6 +994,28 @@
       <div class="proj-list">
 
         <article class="proj reveal">
+          <div class="proj-media carousel" data-autoplay="5200" data-repo="https://github.com/Namitt/ai-opportunity-prioritisation-n8n">
+            <span class="car-view">View repo ↗</span>
+            <div class="car-track">
+              <div class="car-slide"><img src="ai-opportunity/cover.png" alt="AI Opportunity Discovery &amp; Prioritisation — n8n workflow overview" loading="lazy"></div>
+              <div class="car-slide"><img src="ai-opportunity/workflow-light.png" alt="n8n workflow: data ingest, AI processing, six-criteria scoring, and routing" loading="lazy"></div>
+              <div class="car-slide"><img src="ai-opportunity/governance-routing.png" alt="Responsible-AI governance routing: risk-based decision gateway" loading="lazy"></div>
+              <div class="car-slide"><img src="ai-opportunity/workflow-canvas.png" alt="Full n8n editor canvas of the opportunity prioritisation workflow" loading="lazy"></div>
+            </div>
+            <button class="car-arrow prev" aria-label="Previous slide">‹</button>
+            <button class="car-arrow next" aria-label="Next slide">›</button>
+            <div class="car-dots"></div>
+          </div>
+          <div class="proj-info">
+            <div class="kind">AI automation · BA · GitHub</div>
+            <h3>AI opportunity discovery &amp; prioritisation</h3>
+            <p>An n8n workflow that turns messy AI-idea intake into governed decisions: a local LLM produces a structured BA assessment, a weighted six-criteria model scores each idea, and a switch routes it — with governance checked before value, so high-risk ideas never skip review.</p>
+            <div class="proj-tools"><b>Stack:</b> n8n · Docker · Ollama (LLM) · JavaScript · Responsible-AI governance</div>
+            <a class="proj-link" href="https://github.com/Namitt/ai-opportunity-prioritisation-n8n" target="_blank" rel="noopener">View repo <span class="arw">↗</span></a>
+          </div>
+        </article>
+
+        <article class="proj flip reveal">
           <div class="proj-media carousel" data-autoplay="4200" data-repo="https://github.com/Namitt/data-warehouse-project">
             <span class="car-view">View repo ↗</span>
             <div class="car-track">
@@ -1029,7 +1050,7 @@
           </div>
         </article>
 
-        <article class="proj flip reveal">
+        <article class="proj reveal">
           <div class="proj-media carousel" data-autoplay="4600" data-repo="https://github.com/Namitt/Data-Analytics-Sales-Warehouse">
             <span class="car-view">View repo ↗</span>
             <div class="car-track">
@@ -1068,7 +1089,7 @@
           </div>
         </article>
 
-        <article class="proj reveal">
+        <article class="proj flip reveal">
           <div class="proj-media carousel" data-autoplay="4200" data-repo="https://github.com/Namitt/Customer_Shopping_Trend_Analysis">
             <span class="car-view">View repo ↗</span>
             <div class="car-track">
@@ -1740,7 +1761,7 @@ You are a Q&A assistant embedded on Namit's portfolio website. Recruiters, hirin
 
 ## WHO NAMIT IS
 
-Namit is a data analyst currently working as a People & Culture Data Admin at Primark in Manchester, UK. He has an MSc in Business Analytics from Warwick Business School and a BE in Electronics Engineering. He's looking for data analyst and business analyst roles.
+Namit is a data analyst currently working as a People & Culture Data Admin at Primark. He has an MSc in Business Analytics from Warwick Business School and a BE in Electronics Engineering. He's looking for data analyst and business analyst roles.
 
 His core strengths: turning messy HR and operational data into reporting people actually use, building end-to-end analytical projects (data cleaning through modelling), and communicating findings to non-technical stakeholders. He also has real event-leadership experience from running large university events.
 
@@ -1913,6 +1934,7 @@ A data or business analyst position where he can own end-to-end work and keep gr
   document.querySelectorAll('.proj-media.carousel').forEach((root)=>{
     const track = root.querySelector('.car-track');
     const slides = [...track.children];
+    slides.forEach((s)=>{ const im = s.querySelector('img'); if(im){ const set=()=>s.style.setProperty('--bg-img', `url("${im.currentSrc||im.src}")`); im.complete?set():im.addEventListener('load',set,{once:true}); } });
     const dotsWrap = root.querySelector('.car-dots');
     const prevBtn = root.querySelector('.car-arrow.prev');
     const nextBtn = root.querySelector('.car-arrow.next');
